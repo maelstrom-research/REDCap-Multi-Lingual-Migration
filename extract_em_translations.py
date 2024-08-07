@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import requests
 import csv
-import json 
+import json
 from pathlib import Path
 
 ################################################################
@@ -81,7 +81,7 @@ def write_translation_row(name: str, annot: str, w: csv.writer, languages_dict: 
     start_of_p_field = annot.find("p1000")
     start_of_data = annot.find("{")
 
-    #set up row to write to out file 
+    #set up row to write to out file
     if "p1000lang" in annot[start_of_p_field:start_of_data] or "p1000surveytext" in annot[start_of_p_field:start_of_data]:
         line_to_write = [name]
     else:
@@ -151,7 +151,7 @@ def write_translations_file(output_path: str, languages_dict: dict[str:str], md:
     if not output_parent_dir.exists():
         output_parent_dir.mkdir()
         print(f"* Created directory: {output_parent_dir}")
-    
+
     lines_written = 0
 
     with open(output_path, 'w',  newline='', encoding='utf-8-sig') as out_file:
@@ -179,6 +179,6 @@ def create_translations_file(secrets_path: str,
     print("Got old REDCap project metadata")
 
     num_lines_written = write_translations_file(output_path, supported_languages_dict, old_proj_metadata)
-    
+
     print(f"Wrote {num_lines_written} translated REDCap fields to: {output_path}")
     return
