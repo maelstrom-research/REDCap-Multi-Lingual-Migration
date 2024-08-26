@@ -158,3 +158,5 @@ archive/
 source/
 secrets.json
 .secrets.json
+.tokens*
+.swp

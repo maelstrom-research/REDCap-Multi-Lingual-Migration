@@ -166,16 +166,17 @@ def write_translations_file(output_path: str, languages_dict: dict[str:str], md:
                 lines_written += write_translation_row(field_name, field_annotation, csv_writer, languages_dict)
     return lines_written
 
-def create_translations_file(secrets_path: str,
+def create_translations_file(token: str,
+                             url: str,
                              output_path: str,
                              supported_languages_dict: dict[str:str],
                              check_certificate: bool) -> None:
     # supported_languages_dict = {'language_in_english':'language_in_native_language'} (example: {'Spanish':'Español'})
 
-    API_TOKEN,API_URL = load_secrets(secrets_path)
-    print(f"Loaded secrets file: {secrets_path}")
+    # API_TOKEN,API_URL = load_secrets(secrets_path)
+    # print(f"Loaded secrets file: {secrets_path}")
 
-    old_proj_metadata = get_metadata(API_TOKEN, API_URL, check_certificate)
+    old_proj_metadata = get_metadata(token, url, check_certificate)
     print("Got old REDCap project metadata")
 
     num_lines_written = write_translations_file(output_path, supported_languages_dict, old_proj_metadata)
